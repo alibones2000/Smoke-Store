@@ -4,4 +4,34 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   Character.create(name: 'Luke', movie: movies.first
+puts "sui"
+
+10.times{
+    User.create!(
+        username: Faker::App.name,
+        password: "123",
+        email: Faker::Internet.email,
+        wallet: 10
+    )
+}
+
+
+50.times{
+    Game.create!(
+        title: Faker::Game.title, 
+        genre: Faker::Game.genre,
+        price: rand(20..60).round(2),
+        platform: Faker::Game.platform
+    )
+}
+
+40.times{
+    Purchase.create!(
+        user_id: rand(1..10),
+        game_id: rand(1..50)
+    )
+}
+
+puts "suiiiiiii"
+    
