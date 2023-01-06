@@ -3,7 +3,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
     create_table :games do |t|
       t.string :title
       t.string :genre
-      t.integer :price
+      t.decimal :price
       t.string :platform
       t.string :img_url
 

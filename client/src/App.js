@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
 import StoreList from './StoreList'
-import StoreCard from './StoreCard'
-import StorePage from './StorePage'
-import Nav from './Nav'
 import { useEffect, useState } from 'react';
-import {Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import CartList from './CartList';
+import LogIn from './LogIn';
+import SignUp from './signup';
+import Library from './Library';
 
 
 function App() {
+  const [userData, setUserData] = useState({})
   const [games, setGames] = useState([])
   const [searchGames, setSearchGames] = useState('')
+
+  useEffect(() => {
+    fetch('/me')
+    .then(r => {
+      if(r.ok){
+        r.json()
+        .then(data => {
+          setUserData(data)
+        })
+      }
+    })
+  }, [])
   
   useEffect(() =>{
-    fetch('http://localhost:4000/games')
+    fetch('/games')
     .then(res => res.json())
-    .then(data => setGames(data))
-
+    .then(data => {
+      if (!data.message){ 
+        setGames(data)
+      } 
+    })
+  
   },[])
+
+  // console.log(games)
 
   const filterAllGames = games.filter(filterGames => {
     return filterGames.title.toLowerCase().includes(searchGames.toLowerCase())
@@ -34,33 +53,38 @@ function App() {
     })
     setGames(updatedGames) 
   }
-  const cartGames = games.filter(game => {
-    if (game.cart === true) {
-      return game
-    } 
-  })
-  
-  
+  // const cartGames = games.filter(game => {
+  //   if (game.cart === true) {
+  //     return game
+  //   } 
+  // })
+
   return (
     <div className="App">
-      <Nav searchGames={searchGames} handleSearch={handleSearch}/>
-      <Routes>
-        <Route path="storelist" element={<StoreList filterAllGames={filterAllGames} updateCartGame={updateCartGame}  />}/>
-      </Routes>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          <Route exact path="/storelist">
+            <StoreList filterAllGames={filterAllGames} updateCartGame={updateCartGame} games={games} userData={userData} setUserData={setUserData}/>
+          </Route>
+         
+          <Route exact path="/cart"> 
+            <CartList userData={userData} />
+          </Route>
+          
+          <Route exact path="/">
+            <LogIn userData={userData} setUserData={setUserData} />
+          </Route>
+          
+          <Route exact path="/signup">
+            <SignUp setUserData={setUserData}/>
+          </Route>
+          
+          <Route exact path="/library">
+            <Library userData={userData}/>
+          </Route>
+
+        </Switch>
+      </Router>
     </div>
   );
 }

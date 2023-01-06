@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2022_12_23_163019) do
   create_table "games", force: :cascade do |t|
     t.string "title"
     t.string "genre"
-    t.integer "price"
+    t.decimal "price"
     t.string "platform"
     t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
