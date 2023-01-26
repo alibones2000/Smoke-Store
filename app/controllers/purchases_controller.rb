@@ -4,12 +4,12 @@ class PurchasesController < ApplicationController
         user = User.find(session[:user_id])
         render json: user.games
     end
-    def add_to_cart
-        user = User.find(session[:user_id])
-        game = Game.find(params[:id])
-        purchase = Purchase.create!(game_id: game.id,user_id: user.id)
-        render json: purchase
-    end
+    # def add_to_cart
+    #     user = User.find(session[:user_id])
+    #     game = Game.find(params[:id])
+    #     purchase = Purchase.create!(game_id: game.id,user_id: user.id)
+    #     render json: purchase
+    # end
 
     def remove_from_cart
         user = User.find(session[:user_id])

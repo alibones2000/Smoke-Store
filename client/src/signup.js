@@ -5,12 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 function SignUp({ setUserData }){
     const [ newUsername, setNewUsername ] = useState('')
-    const [ newEmail, setNewEmail ] = useState('')
     const [ newPassword, setNewPassword ] = useState('')
     const [ error, setError ] = useState('')
     const history = useHistory()
     const handleUsername = e => setNewUsername(e.target.value)
-    const handleEmail = e => setNewEmail(e.target.value)
     const handlePassword = e => setNewPassword(e.target.value)
     function handleSignUp(){
         
@@ -21,7 +19,6 @@ function SignUp({ setUserData }){
             },
             body: JSON.stringify({
                 username: newUsername,
-                email: newEmail,
                 password: newPassword
             })
         })
@@ -31,22 +28,25 @@ function SignUp({ setUserData }){
                 setUserData(data)
                 history.push("/home")
             }else if(data.error){
-                setError(data.error)
+console.log(data.error)
             }
         })
     }
     return(
+        <div className="login-container">
         <div>
             <p>{error}</p>
-            <label for="new-username">Username: </label>
-            <input type="text" className="new-username" onChange={handleUsername} />
-            <label for="new-email">Email: </label>
-            <input type="email" className="new-email" onChange={handleEmail} />
-            <label for="new-password">Password: </label>
-            <input type="password" className="new-password" onChange={handlePassword} />
-            <Button variant='primary' onClick={handleSignUp}>Sign Up</Button>
-            
+            <br />
+            <label for="username" style={{color:"#AFAFAF"}}>Username: </label>
+            <input type="email" className="username" onChange={handleUsername} />
+            <br />
+            <label for="password" style={{color:"#AFAFAF"}}>Password: </label>
+            <input type="password" className="password" onChange={handlePassword} />
+            <div className="button-holder">
+                <button className="login-btn" onClick={handleSignUp}>Sign Up</button>
+            </div>
         </div>
+  </div>
     )
 }
 export default SignUp;

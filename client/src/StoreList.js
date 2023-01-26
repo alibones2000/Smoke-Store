@@ -1,14 +1,18 @@
 import StoreCard from './StoreCard'
 import React from 'react'
 import Nav from "./Nav"
+import { useState } from 'react'; 
 import CardGroup from 'react-bootstrap/CardGroup';
 
 
-function StoreList({filterAllGames, updateCartGame, games, searchGames, handleSearch, userData}) {
-console.log(games)
+
+function StoreList({filterAllGames, updateCartGame, games, searchGames, handleSearch, userData, gameCart, setGameCart}) {
+ 
 const eachGame = filterAllGames.map(game => {
-return <StoreCard key={game.id} game={game} updateCartGame={updateCartGame}/>
+return <StoreCard key={game.id} game={game} updateCartGame={updateCartGame}  gameCart={gameCart} setGameCart={setGameCart}/>
 })
+
+
 
 
 

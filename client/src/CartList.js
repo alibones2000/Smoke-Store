@@ -4,23 +4,23 @@ import CartCard from "./CartCard"
 import Nav from "./Nav"
 
 
- function CartList({handleSearch, searchGames, userData, setUserData}) {
-  const [cartGames, setCartGames] = useState([])
+ function CartList({handleSearch, searchGames, userData, setUserData, gameCart, setGameCart}) {
   
-  useEffect(() => {
-    fetch('/purchases')
-    .then(res => res.json())
-    .then(data => setCartGames(data))
-  },[])
-  console.log(cartGames)
+  
+  // useEffect(() => {
+  //   fetch('/purchases')
+  //   .then(res => res.json())
+  //   .then(data => setgameCart(data))
+  // },[])
+  console.log(gameCart)
 
 function addToLibrary(newObj) {
   console.log(newObj)
-  setCartGames(prevState => [...prevState, newObj])
+  setGameCart(prevState => [...prevState, newObj])
 }
 
-  const eachCartGame = cartGames.map(cartGame => {
-    return <CartCard key={cartGame.id} cartGame={cartGame} addToLibrary={addToLibrary} setCartGames={setCartGames} userData={userData} setUserData={setUserData} />
+  const eachCartGame = gameCart.map(cartGame => {
+    return <CartCard key={gameCart.id} cartGame={cartGame} addToLibrary={addToLibrary} setgameCart={setGameCart} userData={userData} setUserData={setUserData} />
   })
   
   return (
@@ -30,7 +30,9 @@ function addToLibrary(newObj) {
       <Link style = {{textDecoration: 'none', color:'black'}} to='/storelist' >
       Back To Store Page
       </Link>
+      <div style={{display: 'flex', width: '100vw',height: "100vw", flexWrap: 'wrap', gap: '2vw ', alignItems: 'center', justifyContent: 'center', borderstyle: 'solid'}}>
       {eachCartGame}
+      </div>
     </div>
    </div>
   )

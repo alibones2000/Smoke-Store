@@ -64,7 +64,7 @@ return (
  {/* </Card.Footer> */}
 {/* </Card> */}
    </div>
-<Button style={{marginTop: '10px'}} onClick={handleDelete} id="remove-from-cart">Remove from Cart</Button>
+<Button style={{marginTop: '10px'}} onClick={handleDelete} id="add-to-cart">Remove from Cart</Button>
 <Button style={{marginTop: '10px'}} onClick={handleBuy} className="buy-btn">Buy Game</Button>
 </div>
 );

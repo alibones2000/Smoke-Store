@@ -11,6 +11,8 @@
   width:100%;
   height: 100vh;
   background-color: grey;
+  background-image: url('https://img.freepik.com/free-vector/parallel-dark-shapes-abstract-background_79603-878.jpg?w=996&t=st=1672869491~exp=1672870091~hmac=76443e7c9e27974ab9b8801f5e6e904a217a3a2a59c729ae326894fa92247751');
+
 }
 .login-container{
   width: 30%;
@@ -116,7 +118,72 @@
   height: 100vh;
 }
 
-
+.error{
+  color: red;
+  margin-bottom: 2%;
+}
+.main-holder{
+  width:100%;
+  height: 100vh;
+  background-image: url('https://img.freepik.com/free-vector/parallel-dark-shapes-abstract-background_79603-878.jpg?w=996&t=st=1672869491~exp=1672870091~hmac=76443e7c9e27974ab9b8801f5e6e904a217a3a2a59c729ae326894fa92247751');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.login-container{
+  width: 30%;
+  height: 50vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #181A21;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+.username{
+  width: 100%;
+  margin-bottom:20%;
+  margin-top: 1%;
+  padding: 3%;
+  font-size: 1rem;
+  background-color: #32353C;
+  border: none;
+  color: #E9E9E9
+}
+.password{
+  width: 100%;
+  margin-bottom: 20%;
+  margin-top: 1%;
+  padding: 3%;
+  font-size: 1rem;
+  background-color: #32353C;
+  border: none;
+  color: #E9E9E9
+}
+.button-holder{
+  width: 100%;
+  text-align: center;
+}
+.login-btn{
+  width: 80%;
+  height: 45px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  background: rgb(48,48,226);
+  background: linear-gradient(238deg, rgba(48,48,226,1) 0%, rgba(0,212,255,1) 100%);
+  cursor: pointer;
+}
+.signup-btn{
+  color: #fff;
+  background-color: transparent;
+  border: none;
+}
 
 
 

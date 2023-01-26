@@ -12,6 +12,8 @@ function App() {
   const [userData, setUserData] = useState({})
   const [games, setGames] = useState([])
   const [searchGames, setSearchGames] = useState('')
+  const [ gameCart, setGameCart ] = useState([]);
+
 
   useEffect(() => {
     fetch('/me')
@@ -42,9 +44,9 @@ function App() {
     return filterGames.title.toLowerCase().includes(searchGames.toLowerCase())
   })
 
-  function handleSearch(e){
-    setSearchGames(e.target.value)
-  }
+  // function handleSearch(e){
+  //   setSearchGames(e.target.value)
+  // }
   function updateCartGame(updatedGame) {
     const updatedGames = games.map(game => {
       if (game.id === updatedGame.id) {
@@ -64,11 +66,11 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/storelist">
-            <StoreList filterAllGames={filterAllGames} updateCartGame={updateCartGame} games={games} userData={userData} setUserData={setUserData}/>
+            <StoreList filterAllGames={filterAllGames} updateCartGame={updateCartGame} games={games} userData={userData} setUserData={setUserData} gameCart={gameCart} setGameCart={setGameCart} />
           </Route>
          
           <Route exact path="/cart"> 
-            <CartList userData={userData} />
+            <CartList userData={userData} gameCart={gameCart} setGameCart={setGameCart}/>
           </Route>
           
           <Route exact path="/">
@@ -80,7 +82,7 @@ function App() {
           </Route>
           
           <Route exact path="/library">
-            <Library userData={userData}/>
+            <Library userData={userData} gameCart={gameCart}/>
           </Route>
 
         </Switch>

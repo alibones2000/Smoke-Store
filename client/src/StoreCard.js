@@ -3,16 +3,25 @@ import { useState} from 'react';
 
 import { Button  } from 'react-bootstrap';
 
-function StoreCard({game, updateCartGame}){
+function StoreCard({game, updateCartGame, gameCart, setGameCart}){
   const [gamePrice, setGamePrice] = useState([]);
     const {title, genre, price ,platform, img_url, id} = game
     function handleCartClick(game){
-      fetch(`/add_to_cart/${id}`)
-      .then(response => response.json())
-      .then(data => updateCartGame(data))
-      setGamePrice(...gamePrice, game.price)
+      // fetch(`/add_to_cart/${id}`, {
+      //   method: "POST",
+      //   headers:{
+      //     "content-type":"application/json"
+      //   },
+      //   body: JSON.stringify({
+
+      //   })
+      // })
+      // .then(response => response.json())
+      // .then(data => updateCartGame(data))
+      // setGamePrice(...gamePrice, game.price)
+      console.log(game)
+      setGameCart([...gameCart, game])
     }
-    console.log(gamePrice)
 
     return (
       // <Card>
@@ -42,7 +51,7 @@ function StoreCard({game, updateCartGame}){
       {/* </Card.Footer> */}
     {/* </Card> */}
        </div>
-    <Button style={{marginTop: '10px'}} onClick={() => handleCartClick(game)} id="add-to-cart">Add to Cart</Button>
+    <Button style={{marginTop: '10px'}} onClick={() => handleCartClick(game)} className="add-to-cart">Add to Cart</Button>
     </div>
         // <div className='game-info' >
         //   <img className='img_url-size' src={img_url} />
